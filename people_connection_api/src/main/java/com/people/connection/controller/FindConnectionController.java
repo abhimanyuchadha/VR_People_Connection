@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.people.connection.model.Person;
+
 
 /**
  * @author Abhimanyu
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FindConnectionController {
 	
 	@RequestMapping(value = "/connection", method = RequestMethod.GET)
-	public ResponseEntity<Object> findConnection() {
-
+	public ResponseEntity<Person> findConnection() {
+		
 		return null;
 	}
 	
