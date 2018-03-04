@@ -123,6 +123,9 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		        Decoder decoder=Base64.getDecoder(); 
 		        System.out.println(person.getImage());
 		        imageByte = decoder.decode(person.getImage());//decodeBuffer(person.getImage());
+		        for(byte b:imageByte) {
+		        	System.out.println(b);
+		        }
 		        ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
 		        image = ImageIO.read(bis);
 		        bis.close();
