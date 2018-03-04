@@ -46,7 +46,8 @@ def face_rec(img_byte_array):
 
     # temp_img = img_byte_array.decode('base64')
     # temp_img = base64.decodestring(img_byte_array)
-    rgb_small_frame = face_recognition.load_image_file(img_byte_array)
+    rgb_small_frame = face_recognition.load_image_file(sys.argv[1])
+    # rgb_small_frame = face_recognition.load_image_file("2.jpg")
     # rgb_small_frame = face_recognition.load_image_file(img_byte_array)
     # Find all the faces and face encodings in the current frame of video
     face_locations = face_recognition.face_locations(rgb_small_frame)
@@ -56,7 +57,7 @@ def face_rec(img_byte_array):
     for face_encoding in face_encodings:
         # See if the face is a match for the known face(s)
         matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-        name = "Unknown"
+        fluid = "Unknown"
 
         # If a match was found in known_face_encodings, just use the first one.
         if True in matches:
@@ -80,23 +81,14 @@ def face_rec(img_byte_array):
 
 
 
-# imageFile = open("untitled folder/Unknown.jpg", "rb")
-# # f = imageFile.read()
-# # b = Image.open(io.BytesIO((f)))
-# # print b
-#
-# strImg = base64.b64encode(imageFile.read())
-#
-# fh = open("save.jpg", "wb")
-# fh.write(sys.argv[1]).decode('base64'))
-# fh.close()
-#
-# str = (face_rec("save.jpg"))
-str = (face_rec(sys.argv[1]))
+imageFile = open("untitled folder/Unknown.jpg", "rb")
+# f = imageFile.read()
+# b = Image.open(io.BytesIO((f)))
+# print b
 
-# os.remove("save.jpg")
+strImg = base64.b64encode(imageFile.read())
 
-
-
+str = (face_rec(imageFile))
+#     str = (face_rec(sys.argv[1]))
 
 print (str)
