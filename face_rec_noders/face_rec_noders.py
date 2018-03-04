@@ -80,21 +80,21 @@ def face_rec(img_byte_array):
 
 
 
-imageFile = open("untitled folder/Unknown.jpg", "rb")
-# f = imageFile.read()
-# b = Image.open(io.BytesIO((f)))
-# print b
+# imageFile = open("untitled folder/Unknown.jpg", "rb")
+# # f = imageFile.read()
+# # b = Image.open(io.BytesIO((f)))
+# # print b
+#
+# strImg = base64.b64encode(imageFile.read())
+#
+# fh = open("save.jpg", "wb")
+# fh.write(sys.argv[1]).decode('base64'))
+# fh.close()
+#
+# str = (face_rec("save.jpg"))
+str = (face_rec(sys.argv[1]))
 
-strImg = base64.b64encode(imageFile.read())
-
-fh = open("save.jpg", "wb")
-fh.write(sys.argv[1]).decode('base64'))
-fh.close()
-
-str = (face_rec("save.jpg"))
-#     str = (face_rec(sys.argv[1]))
-
-os.remove("save.jpg")
+# os.remove("save.jpg")
 
 
 
