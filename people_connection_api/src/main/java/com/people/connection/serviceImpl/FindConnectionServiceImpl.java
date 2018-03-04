@@ -85,7 +85,7 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		    {
 		        int number1 = 10;
 		        int number2 = 32;
-		        ProcessBuilder pb = new ProcessBuilder("python3","face_rec_noders.py",person.getImage());
+		        ProcessBuilder pb = new ProcessBuilder("python3","/home/ubuntu/pythonFCRecg/face_rec_noders.py",person.getImage());
 		        Process p = pb.start();
 		        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		         ret = in.readLine();
