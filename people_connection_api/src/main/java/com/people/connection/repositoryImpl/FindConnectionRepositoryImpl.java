@@ -31,12 +31,6 @@ public class FindConnectionRepositoryImpl implements FindConnectionRepository {
 	public Map<String, List<String>> getGraph() {
 		// TODO Auto-generated method stub
 		MongoCollection collection = dataSource.getCollection(PHOTO_IMAGES_COLLECTION);
-		System.out.println(collection.getName());
-		//System.out.println();
-		collection.find().as(Response.class);
-		Find find= collection.find();
-		//MongoCursor<Map<String, List<String>>> map=find.map(new PeopleResultMapper());
-		System.out.println(find);
 		MongoCursor<Response> cursor = collection.find().as(Response.class);
 		List<Response> l= convertMongoCursorToList(cursor);
 		Map<String, List<String>> map=new HashMap<String, List<String>>();
