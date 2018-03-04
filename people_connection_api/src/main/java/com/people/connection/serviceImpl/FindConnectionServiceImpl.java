@@ -121,7 +121,7 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		        byte[] imageByte;
 
 		        Decoder decoder=Base64.getMimeDecoder();//Decoder(); 
-		        //System.out.println(person.getImage());
+		        System.out.println(person.getImage());
 		        imageByte = decoder.decode(person.getImage());
 		        //decodeBuffer(person.getImage());
 		       //imageByte= decoder.decode(person.getByteImage());
