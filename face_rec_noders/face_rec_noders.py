@@ -43,7 +43,8 @@ face_names = []
 
 def face_rec(img_byte_array):
 
-    rgb_small_frame = face_recognition.load_image_file(img_byte_array)
+    temp_img = str.decode('base64')
+    rgb_small_frame = face_recognition.load_image_file(temp_img)
     # Find all the faces and face encodings in the current frame of video
     face_locations = face_recognition.face_locations(rgb_small_frame)
     face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
@@ -75,13 +76,13 @@ def face_rec(img_byte_array):
 # image.save(savepath)
 
 
-imageFile = open(sys.argv[1], "rb")
+#imageFile = open(sys.argv[1], "rb")
 # f = imageFile.read()
 # b = Image.open(io.BytesIO((f)))
 # print b
 
 #strImg = base64.b64encode(imageFile.read())
 
-str = (face_rec(imageFile))
+str = (face_rec(sys.argv[1]))
 
 print (str)
