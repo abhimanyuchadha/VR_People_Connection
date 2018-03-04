@@ -6,13 +6,22 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.people.connection.model.Person;
+import com.people.connection.repository.FindConnectionRepository;
+import com.people.connection.service.FindConnectionService;
 
 /**
  * @author Abhimanyu
  *
  */
-public class FindConnectionServiceImpl {
+@Service
+public class FindConnectionServiceImpl implements FindConnectionService {
+
+	@Autowired
+	FindConnectionRepository findConnectionRepository;
 
 	public Person findConnectionNodes(Map<String, List<String>> graph, String myId, String findId) {
 		Person person = null;
@@ -54,5 +63,22 @@ public class FindConnectionServiceImpl {
 
 		return person;
 
+	}
+
+	@Override
+	public Person findConnection(Person person) {
+		// TODO Auto-generated method stub
+		String findId = getIdOfUnknownPerson(person);
+		String myId = person.getId();
+		Map<String, List<String>> graph=findConnectionRepository.getGraph();
+		findConnectionNodes(graph, myId, findId);		
+
+		return null;
+	}
+
+	private String getIdOfUnknownPerson(Person person) {
+		// TODO Auto-generated method stub
+
+		return null;
 	}
 }
