@@ -28,20 +28,21 @@ public class FindConnectionRepositoryImpl implements FindConnectionRepository {
 	private static String PHOTO_IMAGES_COLLECTION = "photo_images";
 
 	@Override
-	public Map<String, List<String>> getGraph() {
+	public List<Response> getGraph() {
 		// TODO Auto-generated method stub
 		MongoCollection collection = dataSource.getCollection(PHOTO_IMAGES_COLLECTION);
 		MongoCursor<Response> cursor = collection.find().as(Response.class);
 		List<Response> l= convertMongoCursorToList(cursor);
-		Map<String, List<String>> map=new HashMap<String, List<String>>();
-		for(Response r:l) {
-			List<String> arrayList=new ArrayList<>();
-			for(String key:r.getConnections()) {
-				arrayList.add(key);
-			}
-			map.put(r.getUid(), arrayList);
-		}
-		return map;
+		return l;
+//		Map<String, List<String>> map=new HashMap<String, List<String>>();
+//		for(Response r:l) {
+//			List<String> arrayList=new ArrayList<>();
+//			for(String key:r.getConnections()) {
+//				arrayList.add(key);
+//			}
+//			map.put(r.getUid(), arrayList);
+//		}
+//		return map;
 	}
 	
 	public <T> List<T> convertMongoCursorToList(MongoCursor<T> cursor) {

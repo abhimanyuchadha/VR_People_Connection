@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.people.connection.model.Person;
+import com.people.connection.model.Response;
 import com.people.connection.repository.FindConnectionRepository;
 import com.people.connection.service.FindConnectionService;
 
@@ -72,8 +73,32 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		// TODO Auto-generated method stub
 		String findId = getIdOfUnknownPerson(person);
 		String myId = person.getId();
-		Map<String, List<String>> graph=findConnectionRepository.getGraph();
-		Person perso=findConnectionNodes(graph, myId, findId);		
+		List<Response> list=findConnectionRepository.getGraph();
+		Map<String, Response> map=new HashMap<>();
+		for(Response rep:list) {
+			map.put(rep.getUid(), rep);
+		}
+		
+		Map<String, List<String>> graph=new HashMap<String, List<String>>();
+		for(Response r:list) {
+			List<String> arrayList=new ArrayList<>();
+			for(String key:r.getConnections()) {
+				arrayList.add(key);
+			}
+			graph.put(r.getUid(), arrayList);
+		}
+		
+		Person perso=findConnectionNodes(graph, myId, findId);
+		Person person1=perso;
+		while(person1.getParent()!=null) {
+			Response rr=map.get(person1.getId());
+			person1.setFirstName(rr.getFirstName());
+			person1.setLastName(rr.getLastName());
+			person1=person1.getParent();
+		}
+		Response response2=map.get(person1.getId());
+		person1.setFirstName(response2.getFirstName());
+		person1.setLastName(response2.getLastName());
 
 		return perso;
 	}
@@ -81,7 +106,7 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 	private String getIdOfUnknownPerson(Person person) {
 		// TODO Auto-generated method stub
 		String ret ="1";
-		 try
+		/* try
 		    {
 		        int number1 = 10;
 		        int number2 = 32;
@@ -96,7 +121,7 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		    	System.out.println("-----------------------------------------------------------------------------------------");
 		        System.out.println(e);
 		        
-		    }
+		    }*/
 		return ret;
 	}
 }
