@@ -1,12 +1,19 @@
 package com.people.connection.serviceImpl;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Base64.Decoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -110,8 +117,21 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		    {
 		        int number1 = 10;
 		        int number2 = 32;
+		        BufferedImage image = null;
+		        byte[] imageByte;
+
+		        Decoder decoder=Base64.getDecoder(); 
+		        imageByte = decoder.decode(person.getImage());//decodeBuffer(person.getImage());
+		        ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+		        image = ImageIO.read(bis);
+		        bis.close();
+
+		        // write the image to a file
+		        File outputfile = new File("/home/ubuntu/mlh_project/image.png");
+		        ImageIO.write(image, "png", outputfile);
+		        
 		        ProcessBuilder pb = new ProcessBuilder("python3","/home/ubuntu/mlh_project/VR_People_Connection" + 
-		        		"face_rec_noders.py",person.getImage());
+		        		"face_rec_noders.py","/home/ubuntu/mlh_project/image.png");
 		        Process p = pb.start();
 		        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		         ret = in.readLine();
