@@ -106,11 +106,12 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 	private String getIdOfUnknownPerson(Person person) {
 		// TODO Auto-generated method stub
 		String ret ="1";
-		/* try
+		 try
 		    {
 		        int number1 = 10;
 		        int number2 = 32;
-		        ProcessBuilder pb = new ProcessBuilder("python3","/home/ubuntu/pythonFCRecg/face_rec_noders.py",person.getImage());
+		        ProcessBuilder pb = new ProcessBuilder("python3","/home/ubuntu/mlh_project/VR_People_Connection" + 
+		        		"face_rec_noders.py",person.getImage());
 		        Process p = pb.start();
 		        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		         ret = in.readLine();
@@ -121,7 +122,7 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		    	System.out.println("-----------------------------------------------------------------------------------------");
 		        System.out.println(e);
 		        
-		    }*/
+		    }
 		return ret;
 	}
 }
