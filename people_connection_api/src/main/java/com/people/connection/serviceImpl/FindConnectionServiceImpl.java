@@ -18,7 +18,7 @@ public class FindConnectionServiceImpl {
 		Person person = null;
 		Map<String, Boolean> visited = new HashMap<String, Boolean>();
 		Iterator<String> iterator = graph.keySet().iterator();
-		
+
 		while (iterator.hasNext()) {
 			String id = (String) iterator.next();
 			visited.put(id, false);
@@ -33,17 +33,18 @@ public class FindConnectionServiceImpl {
 		int depth = 0;
 		while (currentPointer < listOfPersonsQueue.size()) {
 			Person tempPerson = listOfPersonsQueue.get(currentPointer++);
-			
+
 			if (null != tempPerson) {
-				if(tempPerson.getId().equals(findId)) {
-					return tempPerson;
-				}
-				visited.put(tempPerson.getId(),false);
-				
-				for (String connectedId : graph.get(tempPerson.getId())) {
-					Person childPerson=new Person(connectedId);
-					listOfPersonsQueue.add(childPerson);
-					childPerson.setParent(childPerson);					
+				if (!visited.get(tempPerson.getId()).booleanValue()) {
+					if (tempPerson.getId().equals(findId)) {
+						return tempPerson;
+					}
+					visited.put(tempPerson.getId(), false);
+					for (String connectedId : graph.get(tempPerson.getId())) {
+						Person childPerson = new Person(connectedId);
+						listOfPersonsQueue.add(childPerson);
+						childPerson.setParent(childPerson);
+					}
 				}
 			} else {
 				listOfPersonsQueue.add(null);
