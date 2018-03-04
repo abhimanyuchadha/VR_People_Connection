@@ -7,7 +7,8 @@ package com.people.connection.model;
 public class Person {
 
 	Person parent;
-	byte[] image;
+	byte[] byteImage;
+	String image;
 	String id;
 	String firstName;
 	String lastName;
@@ -20,6 +21,32 @@ public class Person {
 	public Person() {
 	}
 
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	
 	public String getId() {
 		return id;
 	}
@@ -28,12 +55,12 @@ public class Person {
 		this.id = id;
 	}
 
-	public byte[] getImage() {
-		return image;
+	public byte[] getByteImage() {
+		return byteImage;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setByteImage(byte[] byteImage) {
+		this.byteImage = byteImage;
 	}
 
 	public Person getParent() {
