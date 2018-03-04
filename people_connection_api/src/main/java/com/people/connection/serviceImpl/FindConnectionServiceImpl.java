@@ -93,7 +93,9 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		    }
 		    catch(Exception e)
 		    {
+		    	System.out.println("-----------------------------------------------------------------------------------------");
 		        System.out.println(e);
+		        
 		    }
 		return ret;
 	}
