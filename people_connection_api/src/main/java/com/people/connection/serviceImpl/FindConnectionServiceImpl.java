@@ -121,13 +121,14 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		        byte[] imageByte;
 
 		        Decoder decoder=Base64.getDecoder(); 
+		        System.out.println(person.getImage());
 		        imageByte = decoder.decode(person.getImage());//decodeBuffer(person.getImage());
 		        ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
 		        image = ImageIO.read(bis);
 		        bis.close();
 
 		        // write the image to a file
-		        File outputfile = new File("/home/ubuntu/mlh_project/image.png");
+		        File outputfile = new File("image.png");
 		        ImageIO.write(image, "png", outputfile);
 		        
 		        ProcessBuilder pb = new ProcessBuilder("python3","/home/ubuntu/mlh_project/VR_People_Connection" + 
