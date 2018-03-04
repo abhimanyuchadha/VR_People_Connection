@@ -1,5 +1,7 @@
 package com.people.connection.serviceImpl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -48,11 +50,11 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 					if (tempPerson.getId().equals(findId)) {
 						return tempPerson;
 					}
-					visited.put(tempPerson.getId(), false);
+					visited.put(tempPerson.getId(), true);
 					for (String connectedId : graph.get(tempPerson.getId())) {
 						Person childPerson = new Person(connectedId);
 						listOfPersonsQueue.add(childPerson);
-						childPerson.setParent(childPerson);
+						childPerson.setParent(tempPerson);
 					}
 				}
 			} else {
@@ -71,14 +73,28 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		String findId = getIdOfUnknownPerson(person);
 		String myId = person.getId();
 		Map<String, List<String>> graph=findConnectionRepository.getGraph();
-		findConnectionNodes(graph, myId, findId);		
+		Person perso=findConnectionNodes(graph, myId, findId);		
 
-		return null;
+		return perso;
 	}
 
 	private String getIdOfUnknownPerson(Person person) {
 		// TODO Auto-generated method stub
-
-		return null;
+		String ret ="1";
+		 try
+		    {
+		        int number1 = 10;
+		        int number2 = 32;
+		        ProcessBuilder pb = new ProcessBuilder("python3","face_rec_noders.py",person.getImage());
+		        Process p = pb.start();
+		        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		         ret = in.readLine();
+		        System.out.println("value is : "+ret);
+		    }
+		    catch(Exception e)
+		    {
+		        System.out.println(e);
+		    }
+		return ret;
 	}
 }
