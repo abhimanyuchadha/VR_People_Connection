@@ -18,9 +18,10 @@ import com.people.connection.model.Person;
 @RestController
 public class FindConnectionController {
 	
-	@RequestMapping(value = "/connection", method = RequestMethod.GET)
-	public ResponseEntity<Person> findConnection() {
-		
+	@RequestMapping(value = "/connection", method = RequestMethod.POST)
+	public ResponseEntity<Person> findConnection(Person person) {
+		System.out.println(person.getId());
+		System.out.println(person.getImage());
 		return new ResponseEntity<>(new Person(),HttpStatus.OK);
 	}
 	
