@@ -22,6 +22,9 @@ public class FindConnectionController {
 	public ResponseEntity<Person> findConnection(Person person) {
 		System.out.println(person.getId());
 		System.out.println(person.getImage());
+		for(byte image: person.getByteImage() ) {
+			System.out.print(image);
+		}
 		return new ResponseEntity<>(new Person(),HttpStatus.OK);
 	}
 	
