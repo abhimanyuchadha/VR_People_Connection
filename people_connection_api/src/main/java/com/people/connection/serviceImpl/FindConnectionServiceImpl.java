@@ -135,7 +135,7 @@ public class FindConnectionServiceImpl implements FindConnectionService {
 		        ImageIO.write(image, "png", outputfile);
 		        
 		        ProcessBuilder pb = new ProcessBuilder("python3","/home/ubuntu/mlh_project/VR_People_Connection" + 
-		        		"face_rec_noders.py","/home/ubuntu/mlh_project/image.png");
+		        		"face_rec_noders.py","/home/ubuntu/mlh_project/VR_People_Connection/image.png");
 		        Process p = pb.start();
 		        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		         ret = in.readLine();
